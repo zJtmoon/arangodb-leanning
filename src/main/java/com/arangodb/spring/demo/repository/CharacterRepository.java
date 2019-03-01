@@ -48,6 +48,12 @@ public interface CharacterRepository extends ArangoRepository<Character, String>
     @QueryOptions(count = true)
     ArangoCursor<Character> getWithSurnameOlderThan(@Param("age") int value, @BindVars Map<String, Object> bindvars);
 
+    /**
+     * 关于 INBOUND、OUTBOUND、ANY 飞区别，可以查看文章 https://blog.csdn.net/yuzongtao/article/details/76061897
+     * @param id
+     * @param edgeCollection
+     * @return
+     */
     @Query("FOR v IN 1..2 INBOUND @id @@edgeCol SORT v.age DESC RETURN DISTINCT v")
     Set<Character> getAllChildsAndGrandchilds(@Param("id") String id, @Param("@edgeCol") Class<?> edgeCollection);
 
