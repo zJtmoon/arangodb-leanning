@@ -6,6 +6,8 @@ import com.arangodb.ArangoDBException;
 import com.arangodb.ArangoDatabase;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 
 public class ExampleBase {
 
@@ -16,6 +18,8 @@ public class ExampleBase {
     protected static ArangoDatabase db;
     protected static ArangoCollection collection;
 
+    @Autowired
+    private RedisTemplate<String,Object> redisTemplate;
     @BeforeClass
     public static void setUp() {
         arangoDB = new ArangoDB.Builder().build();

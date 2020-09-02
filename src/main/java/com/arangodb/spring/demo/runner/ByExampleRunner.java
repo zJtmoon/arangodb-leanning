@@ -1,5 +1,6 @@
 package com.arangodb.spring.demo.runner;
 
+import com.arangodb.internal.ArangoDatabaseImpl;
 import com.arangodb.spring.demo.entity.Character;
 import com.arangodb.spring.demo.repository.CharacterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +16,12 @@ public class ByExampleRunner implements CommandLineRunner {
 
     @Autowired
     private CharacterRepository repository;
+    @Autowired
+    private ArangoDatabaseImpl arangoDatabase;
 
     @Override
     public void run(final String... args) throws Exception {
         System.out.println("# 通过示例查询");
-
         final Character nedStark = new Character("Ned", "Stark", false, 41);
 
         System.out.println(String.format("## 找到匹配的字符 %s", nedStark));
